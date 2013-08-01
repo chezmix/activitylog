@@ -1,0 +1,8 @@
+{% extends "activitylog/main.html" %}
+
+{% block content %}
+<h1>{{ activity.name }}</h1>
+- Posted at {{ activity.date }} -
+
+<p>{{ activity.description }}</p>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "activitylog/main.html" %}
+
+{% block content %}
+<h2>Submit New Activity</h2>
+<form action="{% url 'create_activity' %}" method="post">
+{% csrf_token %}
+
+<div class="input-group">
+    <label for="activity_name">Name</label>: <input type="text" class="form-control" name="activity_name"/>
+    <label for="activity_type">Type</label>: <input type="text" class="form-control" name="activity_type"/>
+    <label for="activity_type">Description</label> : <textarea name="activity_description" class="form-control"></textarea>
+    <input type="submit" id="submit_activity" value="Submit" class="form-control" />
+</div>
+</form>
+
+<h2>Recently Submitted Activities</h2>
+<ul>
+{% for activity in activity_list %}
+    <li><a href="{% url 'view_activity' activity.id %}">{{ activity.name }}</a> ({{ activity.type }})</li>
+{% empty %}
+    No activities found!
+{% endfor %}
+</ul>
+{% endblock %}
